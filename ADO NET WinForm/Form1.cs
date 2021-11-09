@@ -16,11 +16,13 @@ namespace ADO_NET_WinForm
     {
         string connectionString;
         SqlConnection connection;
-        DataTable data;
+        public DataTable data { get; set; }
+        Form2 form2;
         public Form1()
         {
             connectionString = ConfigurationManager.ConnectionStrings["Local"].ConnectionString;
             connection = new SqlConnection(connectionString);
+            data = new DataTable();
             InitializeComponent();
             FillData("SELECT TypeStationery.Type FROM TypeStationery");
             foreach (DataRow column in data.Rows)
@@ -51,13 +53,13 @@ namespace ADO_NET_WinForm
             }
         }
 
-        private void ShowTable(string query)
+        public void ShowTable(string query)
         {
             FillData(query);
             dataGridView1.DataSource = data;
         }
 
-        private void FillData(string query)
+        public void FillData(string query)
         {
             data = new DataTable();
             using (SqlDataAdapter adapter = new SqlDataAdapter(query, connection))
@@ -129,8 +131,12 @@ namespace ADO_NET_WinForm
             }
         }
 
-
-
-
+        private void button13_Click(object sender, EventArgs e)
+        {
+            form2 = new Form2(this);
+            (sender as Button).Enabled = false;
+            buttonMoreFunctions.Enabled = false;
+            form2.Show();
+        }
     }
 }

@@ -45,15 +45,16 @@ namespace ADO_NET_WinForm
             this.comboBoxTask8 = new System.Windows.Forms.ComboBox();
             this.comboBoxTask9 = new System.Windows.Forms.ComboBox();
             this.comboBoxTask10 = new System.Windows.Forms.ComboBox();
+            this.buttonMoreFunctions = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(325, 53);
+            this.dataGridView1.Location = new System.Drawing.Point(325, 13);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(463, 385);
+            this.dataGridView1.Size = new System.Drawing.Size(463, 425);
             this.dataGridView1.TabIndex = 0;
             // 
             // button1
@@ -203,11 +204,23 @@ namespace ADO_NET_WinForm
             this.comboBoxTask10.Size = new System.Drawing.Size(156, 21);
             this.comboBoxTask10.TabIndex = 15;
             // 
+            // buttonMoreFunctions
+            // 
+            this.buttonMoreFunctions.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonMoreFunctions.Location = new System.Drawing.Point(13, 317);
+            this.buttonMoreFunctions.Name = "buttonMoreFunctions";
+            this.buttonMoreFunctions.Size = new System.Drawing.Size(277, 103);
+            this.buttonMoreFunctions.TabIndex = 16;
+            this.buttonMoreFunctions.Text = "More functions";
+            this.buttonMoreFunctions.UseVisualStyleBackColor = true;
+            this.buttonMoreFunctions.Click += new System.EventHandler(this.button13_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonMoreFunctions);
             this.Controls.Add(this.comboBoxTask10);
             this.Controls.Add(this.comboBoxTask9);
             this.Controls.Add(this.comboBoxTask8);
@@ -234,7 +247,7 @@ namespace ADO_NET_WinForm
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        public  System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
@@ -250,6 +263,7 @@ namespace ADO_NET_WinForm
         private System.Windows.Forms.ComboBox comboBoxTask8;
         private System.Windows.Forms.ComboBox comboBoxTask9;
         private System.Windows.Forms.ComboBox comboBoxTask10;
+        public System.Windows.Forms.Button buttonMoreFunctions;
     }
 }
 
