@@ -185,6 +185,8 @@ SELECT Customers.Name FROM Customers
 --@nameStationary nvarchar(100)
 --AS
 --BEGIN
+--	DELETE FROM Sales
+--	WHERE Sales.StationaryId = ANY (SELECT Stationery.Id FROM Stationery WHERE Stationery.Name = @nameStationary)
 --	DELETE FROM Stationery
 --	WHERE Stationery.Name = @nameStationary
 --END
@@ -193,6 +195,8 @@ SELECT Customers.Name FROM Customers
 --@nameManager nvarchar(100)
 --AS
 --BEGIN
+--	DELETE FROM Sales
+--	WHERE Sales.StationaryId = ANY (SELECT Managers.Id FROM Managers WHERE Managers.Name = @nameManager)
 --	DELETE FROM Managers
 --	WHERE Managers.Name = @nameManager
 --END
@@ -201,6 +205,11 @@ SELECT Customers.Name FROM Customers
 --@nameType nvarchar(100)
 --AS
 --BEGIN
+--	DELETE FROM Sales
+--	WHERE Sales.StationaryId = ANY (SELECT Stationery.Id FROM Stationery 
+--									WHERE Stationery.TypeStationeryId = ANY (SELECT TypeStationery.Id FROM TypeStationery WHERE TypeStationery.Type = @nameType))
+--	DELETE FROM Stationery
+--	WHERE Stationery.TypeStationeryId = ANY (SELECT TypeStationery.Id FROM TypeStationery WHERE TypeStationery.Type = @nameType)
 --	DELETE FROM TypeStationery
 --	WHERE TypeStationery.Type = @nameType
 --END
@@ -209,9 +218,25 @@ SELECT Customers.Name FROM Customers
 --@nameCustomer nvarchar(100)
 --AS
 --BEGIN
+--	DELETE FROM Sales
+--	WHERE Sales.StationaryId = ANY (SELECT Customers.Id FROM Customers WHERE Customers.Name = @nameCustomer)
 --	DELETE FROM Customers
 --	WHERE Customers.Name = @nameCustomer
 --END
+
+--BEGIN TRY
+--	BEGIN TRAN
+--	EXEC Task2_11 'User Company'
+--	SELECT * FROM Customers
+--	SELECT * FROM Sales
+--	IF (@@TRANCOUNT > 0) ROLLBACK
+--END TRY
+--BEGIN CATCH
+--	SELECT 2
+--	SELECT * FROM Customers
+--	SELECT * FROM Sales
+--	IF (@@TRANCOUNT > 0) ROLLBACK
+--END CATCH
 
 --Task 2.12
 SELECT TOP 1 Managers.Name, SUM(Quantity)[CountOfSales] FROM Managers, Sales
